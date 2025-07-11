@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randevu Takip Sistemi - About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>Randevu Takip Sistemi</h1>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Ana Sayfa</a></li>
+                <li><a href="{{ url_for('appointments') }}">Randevular</a></li>
+                <li><a href="{{ url_for('patients') }}">Hastalar</a></li>
+                <li><a href="{{ url_for('doctors') }}">Doktorlar</a></li>
+                <li><a href="{{ url_for('about') }}">Hakkında</a></li>
+                <li><a href="{{ url_for('contact') }}">İletişim</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <h2>About Us</h2>
+            <p></p>
+            <div class="about-content">
+                <h3>Features of this app:</h3>
+                <ul>
+                    <li>Bu site hastane randevularını yönetimini sağlar.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Randevu Takip Sistemi. All rights reserved.</p>
+    </footer>
+</body>
+</html> 

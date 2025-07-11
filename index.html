@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randevu Takip Sistemi - Ana Sayfa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>Randevu Takip Sistemi</h1>
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="active">Ana Sayfa</a></li>
+                <li><a href="{{ url_for('appointments') }}">Randevular</a></li>
+                <li><a href="{{ url_for('patients') }}">Hastalar</a></li>
+                <li><a href="{{ url_for('doctors') }}">Doktorlar</a></li>
+                <li><a href="{{ url_for('about') }}">Hakkında</a></li>
+                <li><a href="{{ url_for('contact') }}">İletişim</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <h2>Hoş Geldiniz!</h2>
+            <p>Randevu takip sisteminize hoş geldiniz. Aşağıda güncel istatistikler ve bugünkü randevularınızı görebilirsiniz.</p>
+            
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Toplam Randevu</h3>
+                    <p class="stat-number">{{ stats.total }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Bugünkü Randevu</h3>
+                    <p class="stat-number">{{ stats.today }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Bu Hafta</h3>
+                    <p class="stat-number">{{ stats.this_week }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Planlanan</h3>
+                    <p class="stat-number">
+                        {% for status in stats.status_counts %}
+                            {% if status.status == 'scheduled' %}
+                                {{ status.count }}
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Today's Appointments -->
+            <div class="section">
+                <h3>Bugünkü Randevular</h3>
+                {% if today_appointments %}
+                    <div class="appointments-list">
+                        {% for appointment in today_appointments %}
+                            <div class="appointment-card">
+                                <div class="appointment-time">
+                                    <strong>{{ appointment.appointment_time }}</strong>
+                                    <span class="duration">({{ appointment.duration_minutes }} dk)</span>
+                                </div>
+                                <div class="appointment-details">
+                                    <div class="patient-info">
+                                        <strong>{{ appointment.patient_first_name }} {{ appointment.patient_last_name }}</strong>
+                                        <span class="phone">{{ appointment.patient_phone }}</span>
+                                    </div>
+                                    <div class="doctor-info">
+                                        <span class="doctor-name">{{ appointment.doctor_first_name }} {{ appointment.doctor_last_name }}</span>
+                                        <span class="specialization">{{ appointment.specialization }}</span>
+                                    </div>
+                                    {% if appointment.notes %}
+                                        <div class="notes">{{ appointment.notes }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="appointment-status status-{{ appointment.status }}">
+                                    {{ appointment.status }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="no-appointments">Bugün için randevu bulunmuyor.</p>
+                {% endif %}
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section">
+                <h3>Hızlı İşlemler</h3>
+                <div class="quick-actions">
+                    <a href="{{ url_for('add_appointment') }}" class="action-btn">
+                        <span>+</span>
+                        <div>
+                            <strong>Yeni Randevu</strong>
+                            <small>Randevu oluştur</small>
+                        </div>
+                    </a>
+                    <a href="{{ url_for('add_patient') }}" class="action-btn">
+                        <span>👤</span>
+                        <div>
+                            <strong>Yeni Hasta</strong>
+                            <small>Hasta kaydı</small>
+                        </div>
+                    </a>
+                    <a href="{{ url_for('add_doctor') }}" class="action-btn">
+                        <span>👨‍⚕️</span>
+                        <div>
+                            <strong>Yeni Doktor</strong>
+                            <small>Doktor kaydı</small>
+                        </div>
+                    </a>
+                    <a href="{{ url_for('appointments') }}" class="action-btn">
+                        <span>📅</span>
+                        <div>
+                            <strong>Tüm Randevular</strong>
+                            <small>Randevu listesi</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="section">
+                <h3>Yaklaşan Randevular</h3>
+                {% if upcoming_appointments %}
+                    <div class="upcoming-appointments">
+                        {% for appointment in upcoming_appointments %}
+                            <div class="upcoming-card">
+                                <div class="date-time">
+                                    <div class="date">{{ appointment.appointment_date }}</div>
+                                    <div class="time">{{ appointment.appointment_time }}</div>
+                                </div>
+                                <div class="appointment-info">
+                                    <div class="patient">{{ appointment.patient_first_name }} {{ appointment.patient_last_name }}</div>
+                                    <div class="doctor">{{ appointment.doctor_first_name }} {{ appointment.doctor_last_name }} - {{ appointment.specialization }}</div>
+                                </div>
+                                <div class="status-badge status-{{ appointment.status }}">
+                                    {{ appointment.status }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="no-appointments">Yaklaşan randevu bulunmuyor.</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Randevu Takip Sistemi. Tüm hakları saklıdır.</p>
+    </footer>
+</body>
+</html>
