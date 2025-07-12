@@ -74,6 +74,8 @@ class AppointmentDB:
             )
         ''')
         
+
+        
         conn.commit()
         conn.close()
         
@@ -108,7 +110,8 @@ class AppointmentDB:
                 ('Dr. Zeynep', 'Koç', 'Dermatoloji', '0555-222-3333', 'zeynep@hospital.com'),
                 ('Dr. Mustafa', 'Yıldız', 'Ortopedi', '0555-333-4444', 'mustafa@hospital.com'),
                 ('Dr. Elif', 'Şahin', 'Göz Hastalıkları', '0555-444-5555', 'elif@hospital.com'),
-                ('Dr. Kemal', 'Özkan', 'Nöroloji', '0555-555-6666', 'kemal@hospital.com')
+                ('Dr. Kemal', 'Özkan', 'Nöroloji', '0555-555-6666', 'kemal@hospital.com'),
+                ('Dr. Asım', 'Akın', 'Anestezi', '0530-148-2828', 'asim@hospital.com')
             ]
             
             cursor.executemany('''
@@ -363,7 +366,7 @@ class AppointmentDB:
             'status_counts': status_counts,
             'today': today_appointments,
             'this_week': week_appointments
-        } 
+        }
     
 if __name__ == "__main__":
     AppointmentDB()

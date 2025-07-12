@@ -104,6 +104,48 @@ p {
     color: #721c24;
 }
 
+/* Flash messages */
+.flash-messages {
+    margin-bottom: 2rem;
+}
+
+.flash-messages ul {
+    list-style: none;
+    padding: 0;
+}
+
+.flash-messages li {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border-left: 4px solid;
+    font-weight: 500;
+}
+
+.flash-messages .success {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.flash-messages .error {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+.flash-messages .info {
+    background-color: #d1ecf1;
+    border-color: #17a2b8;
+    color: #0c5460;
+}
+
+.flash-messages .warning {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+    color: #856404;
+}
+
 /* Statistics Grid */
 .stats-grid {
     display: grid;
@@ -382,15 +424,9 @@ p {
 }
 
 /* Contact form */
-.contact-form {
-    max-width: 600px;
-    margin: 2rem auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
 
+
+/* Form styles */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -442,21 +478,6 @@ p {
 
 .btn-success {
     background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-}
-
-/* Contact info */
-.contact-info {
-    margin-top: 3rem;
-    text-align: center;
-}
-
-.contact-info h3 {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-}
-
-.contact-info p {
-    margin-bottom: 0.5rem;
 }
 
 /* About content */
@@ -635,6 +656,8 @@ footer {
     padding: 3rem;
     color: #666;
 }
+
+
 
 @media (max-width: 768px) {
     .form-row {
