@@ -1,6 +1,5 @@
 import sqlite3
 from datetime import datetime, timedelta
-import os
 
 class AppointmentDB:
     def __init__(self, db_name='appointments.db'):
