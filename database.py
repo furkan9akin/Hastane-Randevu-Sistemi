@@ -91,11 +91,11 @@ class AppointmentDB:
         if cursor.fetchone()[0] == 0:
             # Insert sample patients
             patients = [
-                ('Ahmet', 'Yılmaz', '0555-123-4567', 'ahmet@email.com', '1985-03-15', 'İstanbul, Kadıköy'),
-                ('Ayşe', 'Demir', '0555-234-5678', 'ayse@email.com', '1990-07-22', 'Ankara, Çankaya'),
-                ('Mehmet', 'Kaya', '0555-345-6789', 'mehmet@email.com', '1978-11-08', 'İzmir, Konak'),
-                ('Fatma', 'Özkan', '0555-456-7890', 'fatma@email.com', '1992-05-14', 'Bursa, Nilüfer'),
-                ('Ali', 'Çelik', '0555-567-8901', 'ali@email.com', '1988-09-30', 'Antalya, Muratpaşa')
+                ('Ahmet', 'Yılmaz', '0555-123-4567', 'ahmet@gmail.com', '1985-03-15', 'İstanbul, Kadıköy'),
+                ('Ayşe', 'Demir', '0555-234-5678', 'ayse@gmail.com', '1990-07-22', 'Ankara, Çankaya'),
+                ('Mehmet', 'Kaya', '0555-345-6789', 'mehmet@gmail.com', '1978-11-08', 'İzmir, Konak'),
+                ('Fatma', 'Özkan', '0555-456-7890', 'fatma@gmail.com', '1992-05-14', 'Bursa, Nilüfer'),
+                ('Ali', 'Çelik', '0555-567-8901', 'ali@gmail.com', '1988-09-30', 'Antalya, Muratpaşa')
             ]
             
             cursor.executemany('''
